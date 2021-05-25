@@ -18,6 +18,7 @@
 
 - One technique to rule them all
 - Compositional
+  - Chaining, "Training" and NOT wrecking
 - Watchful
 - Lazy
   - Evaluation does not start until subscription
