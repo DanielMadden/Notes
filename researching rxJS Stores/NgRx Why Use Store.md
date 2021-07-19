@@ -1,4 +1,4 @@
-Why use for State Management?
+Why use NgRx for State Management?
 
 - Creates maintainable, explicit applications through the use of single state and actions in order to express state changes
 - For cases where one does not need global, application-wide solutions for state
