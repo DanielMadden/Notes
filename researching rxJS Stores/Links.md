@@ -80,6 +80,6 @@
 
 - Boring video, but good walkthrough of approaching the same problem with different libraries
 
-### Comparison of NgRx, Akita, and @ng-state/store: https://medium.com/@vpranskunas/deep-comparison-of-state-management-solutions-in-angular-562985d4474e
+### **X:** Comparison of NgRx, Akita, and @ng-state/store: https://medium.com/@vpranskunas/deep-comparison-of-state-management-solutions-in-angular-562985d4474e
 
-- X: Completely biased, trying to sell off idea of using HIS library. Doesn't know how to use Akita efficiently
+- **X:** Completely biased, trying to sell off idea of using HIS library. The comments proved that the writer didn't even know how to use Akita efficiently
