@@ -89,3 +89,89 @@ store.select(selectMovies)
 
 this.store.dispatch(searchMoviesAction(searchTerm))
 ```
+
+- Good Action Hygeine
+  - Unique events get unique actions
+  - Actions are grouped by their source
+  - Actions are never reused
+
+```js
+export const enter = createAction("[Movies Page] Enter");
+
+store.dispatch(enter());
+```
+
+You can also attach metadata:
+
+```js
+export const createMovie = createAction(
+    '[Movies Page] Create Movie',
+    props<{movie: MovieRequiredProps }>()
+)
+
+store.dispatch(createMovie({
+    movie: movieRequiredProps
+}));
+```
+
+- Actions will be in their action group file, and the entire group is imported into other classes
+- Event Storming:
+  1. Using sticky notes, as a group identify all of the events in the system
+  2. Identify the commands that cause the event to arise
+  3. Identify the actor in the system that invokes the command
+  4. Identify the data models attached to each event
+- Events in this book app:
+  - [Books Page] Create a Book
+    - BookRequiredProps
+  - [Books Page] Update a Book
+    - BookRequiredprops
+    - ID of the book being edited
+  - [Books Page] Delete a Book
+    - ID of the book being deleted
+  - [Books Page] Cancel Editing a Book
+- Events with the API:
+
+  - [Movies API] Get Movies Success
+  - [Movies API] Get Movies Failure
+
+---
+
+- Reducers
+  - Produce new states
+  - Receive the last state and next action
+  - Listen to specific actions
+  - Use pure immutable operations
+
+```js
+export interface State {
+  collection: MovieModel[];
+  activeMovieId: string | null;
+}
+
+export const initialState: State = {
+  collection: [],
+  activeMovieId: null,
+};
+```
+
+```js
+export const moviesReducer = createReducer(
+  initialState,
+  on(
+    MoviesPageActions.enter,
+    MoviesPageActions.clearSelectedMovie,
+    (state, action) => {
+      return {
+        collection: state.collection,
+        activeMovieId: null,
+      };
+    }
+  ),
+  on(MoviesPageActions.selectMovie, (state, action) => {
+    return {
+      collection: state.collection,
+      activeMovieId: action.movieId,
+    };
+  })
+);
+```
